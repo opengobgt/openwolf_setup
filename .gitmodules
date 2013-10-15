@@ -1,0 +1,6 @@
+[submodule "modules/rvm"]
+	path = modules/rvm
+	url = https://github.com/opengobgt/puppet-rvm.git
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://github.com/opengobgt/puppetlabs-stdlib.git

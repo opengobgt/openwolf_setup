@@ -39,7 +39,7 @@ rvm_gem {
 # Herramientas de Sistema
 #------------------------------------
 
-package { ['tmux', 'tree', 'htop']:
+package { ['tmux', 'tree', 'htop', 'tig']:
   ensure => latest,
 }
 

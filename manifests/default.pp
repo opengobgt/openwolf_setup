@@ -43,6 +43,11 @@ package { ['tmux', 'tree', 'htop']:
   ensure => latest,
 }
 
+package ['freetds-dev', 'freetds-bin']:
+  ensure => latest,
+}
+
+
 #------------------------------------
 # Keyboard Shortcuts
 #------------------------------------

@@ -7,3 +7,12 @@
 [submodule "modules/postgresql"]
 	path = modules/postgresql
 	url = https://github.com/opengobgt/puppetlabs-postgresql.git
+[submodule "modules/passenger"]
+	path = modules/passenger
+	url = https://github.com/opengobgt/puppetlabs-passenger.git
+[submodule "modules/apache"]
+	path = modules/apache
+	url = https://github.com/opengobgt/puppetlabs-apache
+[submodule "modules/concat"]
+	path = modules/concat
+	url = https://github.com/opengobgt/puppetlabs-concat

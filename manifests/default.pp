@@ -43,10 +43,8 @@ package { ['tmux',
            'tree', 
            'htop', 
            'tig', 
-           'libxml2-dev', 
            'libmagick9-dev', 
            'imagemagick',
-           'sqlite3',
            'libsqlite3-ruby',
            'libpgsql-ruby']:
 ensure => latest,
@@ -60,6 +58,27 @@ package {'libpq-dev':
 ensure => latest
 }
 
+
+# Apache Fussion Passenger
+
+group {"rvm":
+  ensure => present,
+}
+user {"openwolf":
+  ensure => present,
+  groups => ["www-data", "rvm"]
+}
+
+class {'apache': }
+
+apache::vhost {'openwolf.transparencia.gob.gt':
+  docroot => '/var/www/openwolf.transparencia.gob.gt',
+  docroot_owner => 'openwolf',
+  docroot_group => 'www-data'
+}
+
+
+class {'passenger': }
 
 #------------------------------------
 # Keyboard Shortcuts

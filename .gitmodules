@@ -4,3 +4,6 @@
 [submodule "modules/stdlib"]
 	path = modules/stdlib
 	url = https://github.com/opengobgt/puppetlabs-stdlib.git
+[submodule "modules/postgresql"]
+	path = modules/postgresql
+	url = https://github.com/opengobgt/puppetlabs-postgresql.git

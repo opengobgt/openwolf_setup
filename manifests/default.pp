@@ -21,17 +21,17 @@ $ruby_version = 'ruby-2.0.0-p247'
 
 rvm_system_ruby {
   $ruby_version:
-    ensure => 'present',
-    default_use => true;
+ensure => 'present',
+  default_use => true;
 }
 
 
 rvm_gem {
   'bundler':
-    name => 'bundler',
-    ruby_version => $ruby_version,
-    ensure => latest,
-    require => Rvm_system_ruby[$ruby_version];
+  name => 'bundler',
+  ruby_version => $ruby_version,
+ensure => latest,
+  require => Rvm_system_ruby[$ruby_version];
 }
 
 
@@ -39,12 +39,25 @@ rvm_gem {
 # Herramientas de Sistema
 #------------------------------------
 
-package { ['tmux', 'tree', 'htop', 'tig']:
-  ensure => latest,
+package { ['tmux', 
+           'tree', 
+           'htop', 
+           'tig', 
+           'libxml2-dev', 
+           'libmagick9-dev', 
+           'imagemagick',
+           'sqlite3',
+           'libsqlite3-ruby',
+           'libpgsql-ruby']:
+ensure => latest,
 }
 
-package ['freetds-dev', 'freetds-bin']:
-  ensure => latest,
+#------------------------------------
+# Postgresql
+#------------------------------------
+
+package {'libpq-dev':
+ensure => latest
 }
 
 

@@ -43,10 +43,13 @@ package { ['tmux',
            'tree', 
            'htop', 
            'tig', 
-           'libmagick9-dev', 
            'imagemagick',
            'libsqlite3-ruby',
-           'libpgsql-ruby']:
+           'libpgsql-ruby',
+           'graphicsmagick-libmagick-dev-compat',
+           'openjdk-7-jre',
+           'openjdk-7-jdk'
+           ]:
 ensure => latest,
 }
 
@@ -87,26 +90,26 @@ class {'passenger': }
 import 'utils.pp'
 
 append_if_no_such_line { "bundle-exec-shortcut":
-  file => "/home/api/.bashrc",
+  file => "/home/openwolf/.bashrc",
   line => 'alias be="bundle exec"',
 }
 
 append_if_no_such_line { "bundle-rspec":
-  file => "/home/api/.bashrc",
+  file => "/home/openwolf/.bashrc",
   line => 'alias br="be rspec"',
 }
 
 append_if_no_such_line { "bundle-install":
-  file => "/home/api/.bashrc",
+  file => "/home/openwolf/.bashrc",
   line => 'alias bi="bundle install"',
 }
 
 append_if_no_such_line { "bundle-update":
-  file => "/home/api/.bashrc",
+  file => "/home/openwolf/.bashrc",
   line => 'alias br="bundle update"',
 }
 
 append_if_no_such_line { "git-status":
-  file => "/home/api/.bashrc",
+  file => "/home/openwolf/.bashrc",
   line => 'alias gst="git status"',
 }

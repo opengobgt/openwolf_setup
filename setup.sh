@@ -1,2 +1,2 @@
 #!/bin/sh 
-puppet apply --modulepath=./modules ./manifests/default.pp 
+puppet apply --verbose --modulepath=./modules ./manifests/default.pp 

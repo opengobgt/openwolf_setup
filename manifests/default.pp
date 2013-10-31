@@ -49,7 +49,7 @@ package { ['tmux',
            'graphicsmagick-libmagick-dev-compat',
            'openjdk-7-jre',
            'openjdk-7-jdk'
-           ]:
+          ]:
 ensure => latest,
 }
 
@@ -65,51 +65,75 @@ ensure => latest
 # Apache Fussion Passenger
 
 group {"rvm":
-  ensure => present,
+ensure => present,
 }
 user {"openwolf":
-  ensure => present,
+ensure => present,
   groups => ["www-data", "rvm"]
 }
 
 class {'apache': }
 
-apache::vhost {'openwolf.transparencia.gob.gt':
-  docroot => '/var/www/openwolf.transparencia.gob.gt',
-  docroot_owner => 'openwolf',
-  docroot_group => 'www-data'
+  apache::vhost {'openwolf.transparencia.gob.gt':
+    docroot => '/var/www/openwolf.transparencia.gob.gt',
+    docroot_owner => 'openwolf',
+    docroot_group => 'www-data'
+  }
+
+
+
+
+  class {
+      'rvm::passenger::apache':
+      version => '4.0.21',
+      ruby_version => 'ruby-2.0.0-p247',
+      mininstances => '3',
+      maxinstancesperapp => '0',
+      maxpoolsize => '30',
+      spawnmethod => 'smart-lv2';
+    }
+
+###########################
+# Postgresql
+###########################
+
+
+class { 'postgresql::server':
+    postgres_password => '123456'
 }
 
-
-class {'passenger': }
-
-#------------------------------------
-# Keyboard Shortcuts
-#------------------------------------
-
-import 'utils.pp'
-
-append_if_no_such_line { "bundle-exec-shortcut":
-  file => "/home/openwolf/.bashrc",
-  line => 'alias be="bundle exec"',
+postgresql::server::db { 'openwolf_development':
+  user     => 'openwolf',
+  password => '123456',
 }
 
-append_if_no_such_line { "bundle-rspec":
-  file => "/home/openwolf/.bashrc",
-  line => 'alias br="be rspec"',
-}
+    #------------------------------------
+    # Keyboard Shortcuts
+    #------------------------------------
 
-append_if_no_such_line { "bundle-install":
-  file => "/home/openwolf/.bashrc",
-  line => 'alias bi="bundle install"',
-}
+    import 'utils.pp'
 
-append_if_no_such_line { "bundle-update":
-  file => "/home/openwolf/.bashrc",
-  line => 'alias br="bundle update"',
-}
+    append_if_no_such_line { "bundle-exec-shortcut":
+      file => "/home/openwolf/.bashrc",
+      line => 'alias be="bundle exec"',
+    }
 
-append_if_no_such_line { "git-status":
-  file => "/home/openwolf/.bashrc",
-  line => 'alias gst="git status"',
-}
+    append_if_no_such_line { "bundle-rspec":
+      file => "/home/openwolf/.bashrc",
+      line => 'alias br="be rspec"',
+    }
+
+    append_if_no_such_line { "bundle-install":
+      file => "/home/openwolf/.bashrc",
+      line => 'alias bi="bundle install"',
+    }
+
+    append_if_no_such_line { "bundle-update":
+      file => "/home/openwolf/.bashrc",
+      line => 'alias br="bundle update"',
+    }
+
+    append_if_no_such_line { "git-status":
+      file => "/home/openwolf/.bashrc",
+      line => 'alias gst="git status"',
+    }

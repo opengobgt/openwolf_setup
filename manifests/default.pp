@@ -47,8 +47,19 @@ package { ['tmux',
            'libsqlite3-ruby',
            'libpgsql-ruby',
            'graphicsmagick-libmagick-dev-compat',
+           'libmagickwand-dev',
            'openjdk-7-jre',
-           'openjdk-7-jdk'
+           'openjdk-7-jdk',
+	   'libicu48',
+	   'build-dep',
+	   'libqt4-gui',
+	   'libqt4-network',
+	   'libqt4-webkit',
+	   'openssl',
+	   'build-essential',
+	   'xorg',
+	   'git-doc',
+	   'libssl-dev'
           ]:
 ensure => latest,
 }

@@ -55,11 +55,9 @@ package { ['tmux',
 	   'libqt4-gui',
 	   'libqt4-network',
 	   'libqt4-webkit',
-	   'openssl',
-	   'build-essential',
 	   'xorg',
-	   'git-doc',
-	   'libssl-dev'
+	   'git-doc'.9.9-static-i386.tar.bz2
+
           ]:
 ensure => latest,
 }
